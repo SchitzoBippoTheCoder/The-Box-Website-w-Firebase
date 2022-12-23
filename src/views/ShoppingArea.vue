@@ -22,7 +22,7 @@ import MovieOption from '../components/MovieOption.vue';
 import MovieInfoModal from '../components/MovieInfoModal.vue';
 
 import { ref, watch } from 'vue';
-import HeaderToLogin from '../components/HeaderToLogin.vue';
+import HeaderToLogin from '../components/HeaderToLoginOnly.vue';
 
 import { indexStore } from "../store/index.js"
 import { storeToRefs } from 'pinia';
@@ -111,6 +111,12 @@ function moveToCheckout() {
 </script>
 
 <style>
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
 #movieOptionContainer {
     margin-top: 15px;
 
@@ -118,6 +124,9 @@ function moveToCheckout() {
     grid-template-columns: auto auto auto auto auto;
     grid-template-rows: 400px 400px 400px 400px;
     padding: 10px;
+
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
 
 .movieOption {

@@ -1,6 +1,7 @@
 <template>
     <div id="backgroundImage"></div>
-    <HeaderToMainMenu title="Login to The Box" tagline="What will YOU find today?" button-value="HOME"></HeaderToMainMenu>
+    <HeaderToMainMenu title="Login to The Box" tagline="What will YOU find today?" button-value="HOME">
+    </HeaderToMainMenu>
     <form @submit.prevent="checkLogin()" id="loginContainer">
         <label class="loginLabel">Email:</label>
         <br>
@@ -22,6 +23,8 @@ import { ref } from "vue";
 import HeaderToMainMenu from "../components/HeaderToMainMenu.vue"
 import Footer from "../components/Footer.vue"
 import AlertBox from "../components/AlertBox.vue"
+import { auth } from "../firebase/index.js"
+import { signInWithEmailAndPassword } from "@firebase/auth";
 
 const username = ref("");
 const password = ref("");
@@ -29,43 +32,59 @@ const password = ref("");
 let showError = ref(false);
 
 function checkLogin() {
-    if (username.value.value != "tmdb" || password.value.value != "movies") {
-        showError.value = true;
-    }
+    // if (username.value.value != "tmdb" || password.value.value != "movies") {
+    //     showError.value = true;
+    // }
 
-    else {
+    // else {
 
-        router.push('/shopping-area')
-    }
+    //     router.push('/shopping-area')
+    // }
+
+    signInWithEmailAndPassword(auth, username.value.value, password.value.value)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            router.push('/shopping-area');
+
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            showError.value = true;
+
+        });
 }
 
 </script>
 
 <style>
 #backgroundImage {
-        position: fixed;
+    position: fixed;
 
-        top: 0px;
-        left: 0px;
+    top: 0px;
+    left: 0px;
 
-        z-index: -1;
+    z-index: -1;
 
-        height: 100%;
-        width: 100%;
-        background-image: url('../assets/movieBackground.jpg');
-        background-size: cover;
+    height: 100%;
+    width: 100%;
+    background-image: url('../assets/movieBackground.jpg');
+    background-size: cover;
 
-        filter: brightness(25%);
+    filter: brightness(25%);
 }
 
-#loginContainer{
+#loginContainer {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-#loginButton{
+#loginButton {
     outline: transparent;
     border-color: transparent;
 
@@ -84,7 +103,7 @@ function checkLogin() {
     letter-spacing: 2px;
 }
 
-#loginButton:hover{
+#loginButton:hover {
     border-style: solid;
     border-color: white;
     border-width: 2px;
@@ -112,13 +131,13 @@ function checkLogin() {
 
     background-color: darkred;
 
-    border-right: 0.4rem solid ;
+    border-right: 0.4rem solid;
     border-radius: 5px;
 
     box-shadow: 5px 8px 8px black;
 }
 
-.userInput{
+.userInput {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -132,13 +151,13 @@ function checkLogin() {
     padding-left: 7px;
 
     margin-bottom: 15px;
-    
+
     border-style: none;
 
     border-radius: 3px;
 }
 
-.loginLabel{
+.loginLabel {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -148,11 +167,11 @@ function checkLogin() {
     color: white;
 }
 
-#footer{
-        position: absolute;
+#footer {
+    position: absolute;
 
-        bottom: 0px;
+    bottom: 0px;
 
-        margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 </style>

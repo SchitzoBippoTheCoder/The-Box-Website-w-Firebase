@@ -54,6 +54,8 @@ body {
     width: 200px;
     height: 300px;
 
+    aspect-ratio: 2/3;
+
     box-shadow: -7px 12px 8px black;
 
     display: block;

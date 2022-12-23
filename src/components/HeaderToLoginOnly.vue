@@ -3,7 +3,6 @@
         <img src="../assets/TheBoxLogo.png">
         <h1 id="title">{{ title }}</h1>
         <p id="tagline">{{ tagline }}</p>
-        <input id="registerButton" type="button" :value="buttonValue0" @click="pushToRegister()">
         <input id="submitButton" type="button" :value="buttonValue" @click="pushToLogin()">
     </div>
     <div>
@@ -18,17 +17,11 @@ defineProps({
     title: String,
     tagline: String,
     buttonValue: String,
-    buttonValue0: String,
 });
 
 function pushToLogin() {
     router.push('/login');
 }
-
-function pushToRegister() {
-    router.push('/register');
-}
-
 </script>
 
 <style>
