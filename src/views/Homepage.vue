@@ -1,5 +1,5 @@
 <template>
-        <HeaderToLogin title="Welcome to The Box" tagline="What will YOU find today?" button-value="LOGIN" button-value0="REGISTER"></HeaderToLogin>
+        <HeaderToLogin title="Welcome to The Box" tagline="What will YOU find today?" button-value="LOGIN"></HeaderToLogin>
         <div id="backgroundImage"></div>
         <h1 id="messageLine1">Want it? Box it!</h1>
         <h3 id="messageLine2">Login to start collecting!</h3>
@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import HeaderToLogin from '../components/HeaderToLogin.vue'
+import HeaderToLogin from '../components/HeaderToLoginOnly.vue'
 import Footer from '../components/Footer.vue'
 
 import { storeToRefs } from 'pinia';

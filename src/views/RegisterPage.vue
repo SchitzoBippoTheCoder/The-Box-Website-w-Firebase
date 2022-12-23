@@ -16,6 +16,7 @@
         <input type="password" ref="confirmPassword" placeholder="Confirm Password" class="userInput">
         <br />>
         <input type="submit" value="REGISTER" @click="checkLogin()" id="loginButton">
+        <p @click="pushToLogin()">Already have an account? Sign in!</p>
     </form>
     <Footer message1="The Box" message2="Copyright © 2022 The Box, Inc." id="footer"></Footer>
     <AlertBox message="Account created! Login to get started!" id="accountBox" v-if="showAccount"></AlertBox>
@@ -62,9 +63,33 @@ function checkLogin() {
     }
 }
 
+function pushToLogin() {
+    router.push('/login');
+}
+
 </script>
 
 <style scoped>
+p {
+
+    position: absolute;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+
+    font-size: small;
+
+    color: white;
+
+    left: 210px;
+    top: 245px;
+}
+
+p:hover {
+    text-decoration: underline;
+}
+
 #backgroundImage {
     position: fixed;
 

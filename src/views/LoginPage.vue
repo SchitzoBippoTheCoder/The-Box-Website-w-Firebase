@@ -12,6 +12,7 @@
         <input type="password" ref="password" placeholder="Password" class="userInput">
         <br>
         <input type="submit" value="LOGIN" @click="checkLogin()" id="loginButton">
+        <p @click="pushToRegister()">Don't have an account? Sign up!</p>
     </form>
     <Footer message1="The Box" message2="Copyright © 2022 The Box, Inc." id="footer"></Footer>
     <AlertBox message="Your email or password is invalid. Please try again" id="alertBox" v-if="showError"></AlertBox>
@@ -32,14 +33,6 @@ const password = ref("");
 let showError = ref(false);
 
 function checkLogin() {
-    // if (username.value.value != "tmdb" || password.value.value != "movies") {
-    //     showError.value = true;
-    // }
-
-    // else {
-
-    //     router.push('/shopping-area')
-    // }
 
     signInWithEmailAndPassword(auth, username.value.value, password.value.value)
         .then((userCredential) => {
@@ -58,9 +51,33 @@ function checkLogin() {
         });
 }
 
+function pushToRegister() {
+    router.push('/register')
+}
+
 </script>
 
-<style>
+<style scoped>
+p {
+
+    position: absolute;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+
+    font-size: small;
+
+    color: white;
+
+    left: 220px;
+    top: 160px;
+}
+
+p:hover {
+    text-decoration: underline;
+}
+
 #backgroundImage {
     position: fixed;
 
@@ -104,6 +121,34 @@ function checkLogin() {
 }
 
 #loginButton:hover {
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+}
+
+#registerButton {
+    outline: transparent;
+    border-color: transparent;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+
+    vertical-align: middle;
+
+    background-color: black;
+    color: white;
+
+    height: 25px;
+    width: 275px;
+
+    letter-spacing: 2px;
+
+    top: 165px;
+    left: 140px;
+}
+
+#registerButton:hover {
     border-style: solid;
     border-color: white;
     border-width: 2px;
