@@ -43,7 +43,7 @@ function displaySearchResults() {
   let displayTotalPages;
 
   let searchParam = axios.get(
-    `https://api.themoviedb.org/3/search/movie?api_key=e06cb446302dcf3a3cb1358720141aad&language=en-US&page=1&include_adult=false&query=The Batman`,
+    `https://api.themoviedb.org/3/search/movie?api_key=e06cb446302dcf3a3cb1358720141aad&language=en-US&page=1&include_adult=false&query=${searchBar.value.value}`,
     {}
   );
 

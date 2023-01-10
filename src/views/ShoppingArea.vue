@@ -79,7 +79,6 @@ const closeButton = ref();
 let movieInfoModal = ref();
 
 let displayOptions = ref(resultOptions.value);
-let displaySearchOptions = ref(searchOptions.value[0]);
 
 let discoverySearch = axios.get(
   "https://api.themoviedb.org/3/discover/movie?api_key=e06cb446302dcf3a3cb1358720141aad&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1",
