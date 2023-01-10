@@ -1,16 +1,10 @@
 <template>
   <div id="headerContainer">
-    <img src="../assets/TheBoxLogo.png" />
+    <img src="../assets/TheBoxLogo.png" @click="check()"/>
     <h1 id="title">{{ title }}</h1>
     <p id="tagline">{{ tagline }}</p>
-    <input
-      type="search"
-      id="searchBar"
-      placeholder="Search Any Movie ..."
-      autocomplete="off"
-      ref="searchBar"
-      @change="displaySearchResults()"
-    />
+    <input type="search" id="searchBar" placeholder="Search Any Movie ..." autocomplete="off" ref="searchBar"
+      @change="displaySearchResults()" />
     <input id="submitButton" type="button" :value="buttonValue" @click="pushToLogin()" />
   </div>
   <div></div>
@@ -19,7 +13,7 @@
 <script setup>
 import router from "../router";
 import axios from "axios";
-import { ref } from "vue";
+import { ref, isProxy, toRaw  } from "vue";
 
 import { indexStore } from "../store/index.js";
 import { storeToRefs } from "pinia";
@@ -28,6 +22,8 @@ const index = indexStore();
 const { searchOptions } = storeToRefs(index);
 
 const searchBar = ref();
+
+let sendOptions = [];
 
 defineProps({
   title: String,
@@ -40,6 +36,8 @@ function pushToLogin() {
 }
 
 function displaySearchResults() {
+  searchOptions.value = [];
+
   let displayTotalPages;
 
   let searchParam = axios.get(
@@ -69,6 +67,11 @@ function displaySearchResults() {
   });
 
   console.log(searchOptions.value);
+  sendOptions = toRaw(searchOptions.value);
+}
+
+function check() {
+  console.log(sendOptions[0]);
 }
 </script>
 
