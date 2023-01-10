@@ -4,10 +4,11 @@
     </HeaderToMainMenu>
     <form @submit.prevent="checkLogin()" id="loginContainer">
         <label class="loginLabel">Email:</label>
+        <p @click="" id="loginWithGoogle">or register with Google</p>
         <br>
         <input type="email" ref="username" placeholder="Email" class="userInput">
         <br>
-        <label class="loginLabel">Password: (6 or more characters)</label>
+        <label class="loginLabel">Password: (Six or more characters)</label>
         <br>
         <input type="password" ref="password" placeholder="Password" class="userInput">
         <br>
@@ -18,6 +19,7 @@
         <input type="submit" value="REGISTER" @click="checkLogin()" id="loginButton">
         <p @click="pushToLogin()">Already have an account? Sign in!</p>
     </form>
+
     <Footer message1="The Box" message2="Copyright © 2022 The Box, Inc." id="footer"></Footer>
     <AlertBox message="Account created! Login to get started!" id="accountBox" v-if="showAccount"></AlertBox>
     <AlertBox message="Password must be 6 characters or longer. Try again" id="alertBox" v-if="showPassword"></AlertBox>
@@ -56,10 +58,22 @@ function checkLogin() {
     }
 
     else {
+        try {
+            createUserWithEmailAndPassword(auth, username.value.value, password.value.value);
+        }
+
+        catch (error) {
+            showAccount.value = false;
+            showError.value = true;
+            showPassword.value = false;
+
+            return;
+        }
+
         showAccount.value = true;
         showError.value = false;
         showPassword.value = false;
-        createUserWithEmailAndPassword(auth, username.value.value, password.value.value);
+
     }
 }
 
@@ -70,6 +84,21 @@ function pushToLogin() {
 </script>
 
 <style scoped>
+#loginWithGoogle {
+    position: absolute;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+
+    font-size: small;
+
+    color: white;
+
+    left: 57px;
+    top: -10px;
+}
+
 p {
 
     position: absolute;

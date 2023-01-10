@@ -4,6 +4,7 @@
     </HeaderToMainMenu>
     <form @submit.prevent="checkLogin()" id="loginContainer">
         <label class="loginLabel">Email:</label>
+        <p @click="checkGoogleLogin()" id="loginWithGoogle">or login with Google</p>
         <br>
         <input type="email" ref="username" placeholder="Email" class="userInput">
         <br>
@@ -25,7 +26,9 @@ import HeaderToMainMenu from "../components/HeaderToMainMenu.vue"
 import Footer from "../components/Footer.vue"
 import AlertBox from "../components/AlertBox.vue"
 import { auth } from "../firebase/index.js"
-import { signInWithEmailAndPassword } from "@firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
+
+const provider = new GoogleAuthProvider();
 
 const username = ref("");
 const password = ref("");
@@ -51,6 +54,30 @@ function checkLogin() {
         });
 }
 
+function checkGoogleLogin() {
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+            // ...
+
+            router.push('/shopping-area');
+            
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+}
+
 function pushToRegister() {
     router.push('/register')
 }
@@ -58,6 +85,21 @@ function pushToRegister() {
 </script>
 
 <style scoped>
+#loginWithGoogle {
+    position: absolute;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+
+    font-size: small;
+
+    color: white;
+
+    left: 57px;
+    top: -10px;
+}
+
 p {
 
     position: absolute;
