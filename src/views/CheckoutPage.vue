@@ -5,11 +5,8 @@
     </div>
     <div id="paymentContainer">
         <h2 id="checkoutTitle">PAYMENT INFO</h2>
-        <hr id="line" />
+        <hr id="paymentInfoLine"/>
         <h3 id="checkoutHeader">Order Details</h3>
-        <p class="checkoutContent">Choose a payment method</p>
-        <br />
-        <br />
         <div id="paypalContainer">
             <img src="../assets/paypal-3384015_640.png" id="paypalLogo">
             <input id="paymentButton" type="button" value="PAYPAL" />
@@ -18,6 +15,9 @@
             <img src="../assets/card-6518547_640.png" id="creditLogo">
             <input id="paymentButton1" type="button" value="CREDIT/DEBIT" />
         </div>
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <p id="checkoutArgeement">By completing this purchse, you agree to The Box's Terms and Conditions</p>
@@ -131,9 +131,9 @@ for (let i = 0; i < movieItems.value.length; i++) {
 #checkoutHeader {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 475;
 
-    margin-top: 30px;
+    margin-top: 25px;
     margin-left: 35px;
 }
 
@@ -228,11 +228,19 @@ for (let i = 0; i < movieItems.value.length; i++) {
     z-index: 99999999;
 
     border-radius: 10px;
+
+    margin-left: 5px;
+
+    padding-left: 0px;
 }
 
 
 #line {
     width: 90%;
+}
+
+#paymentInfoLine {
+    width: 83%;
 }
 
 #checkoutButton {
@@ -277,7 +285,7 @@ for (let i = 0; i < movieItems.value.length; i++) {
     color: black;
 
     height: 30px;
-    width: 285px;
+    width: 250px;
 
     letter-spacing: 1px;
 
@@ -288,7 +296,6 @@ for (let i = 0; i < movieItems.value.length; i++) {
     border-style: solid;
     border-color: black;
     border-radius: 5px;
-
     display: inline;
 
     text-align: left;
@@ -309,7 +316,7 @@ for (let i = 0; i < movieItems.value.length; i++) {
     color: black;
 
     height: 30px;
-    width: 280px;
+    width: 245px;
 
     letter-spacing: 1px;
 
@@ -370,6 +377,7 @@ for (let i = 0; i < movieItems.value.length; i++) {
 
 #paypalContainer {
     margin-left: 15px;
+    margin-bottom: 1px;
 }
 
 #creditContainer {
